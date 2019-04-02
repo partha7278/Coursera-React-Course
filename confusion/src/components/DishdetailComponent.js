@@ -39,7 +39,7 @@ class DishDetail extends Component{
                 return(
                     <ul key={comm.id} className="list-unstyled">
                         <li><p>{comm.comment}</p></li>
-                        <li><p>-- {comm.author} , {comm.date}</p></li>
+                        <li><p>-- {comm.author} , {new Intl.DateTimeFormat('en-US', {year:'numeric',month:'short',day:'2-digit'}).format(new Date(Date.parse(comm.date))) }</p></li>
                     </ul>
                 )
             });
@@ -64,7 +64,7 @@ class DishDetail extends Component{
         const dish = this.props.seleteDish;
 
         return(
-            <div>
+            <div className="container">
                 {this.renderDish(dish)}
             </div>
         );

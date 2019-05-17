@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Breadcrumb,BreadcrumbItem,Button,Col,Label,Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, Form, Errors, actions } from 'react-redux-form';
+import { Control, Form, Errors } from 'react-redux-form';
 
 
 const required = (val) => val && val.length;
@@ -21,7 +21,8 @@ class Contact extends Component {
 
     handleSubmit(values){
         console.log("Current state: "+ JSON.stringify(values));
-        alert("Current state: "+ JSON.stringify(values));
+        // alert("Current state: "+ JSON.stringify(values));
+        this.props.postFeedback(values.firstname, values.lastname, values.telnum, values.email, values.agree, values.contactType, values.message);
         this.props.resetFeedbackForm();
     }
 
@@ -127,13 +128,13 @@ class Contact extends Component {
                                 <Col md={{size: 6, offset: 2}}>
                                     <div className="form-check">
                                         <Label check>
-                                            <Control.checkbox model=".agree" className="form-check-input" name="agree"  /> {' '}
+                                            <Control.checkbox model=".agree" className="form-check-input" id="agree" name="agree"  /> {' '}
                                             <strong>May we contact you?</strong>
                                         </Label>
                                     </div>
                                 </Col>
                                 <Col md={{ size:3, offset:1 }} >
-                                    <Control.select model=".contactType" className="form-control" name="contactType"  >
+                                    <Control.select model=".contactType" className="form-control" name="contactType" id="contactType" >
                                         <option>Tel.</option>
                                         <option>Email</option>
                                     </Control.select>
